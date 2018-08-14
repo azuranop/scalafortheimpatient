@@ -1,12 +1,9 @@
 
-var wordsMap = new scala.collection.mutable.HashMap[String, Int]
-val in = new java.util.Scanner(new java.io.File("textfile.txt"))
+import scala.collection.mutable.{Map => MutableMap}
+import scala.io.Source
 
-while (in.hasNext) {
-    val word = in.next()
-    val count = wordsMap.getOrElse(word, 0)
-    wordsMap(word) = count + 1
-    in.next()
-  }
-
-println(wordsMap.mkString(", "))
+source.replace(",", "").replace(".", "").split("\\s+").map(_.toLowerCase).foldLeft {
+      MutableMap[String, Int]().withDefault(_ => 0)
+      } {
+        (m, w) => m += (w -> (m(w) + 1))
+      }
